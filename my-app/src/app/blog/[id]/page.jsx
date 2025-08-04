@@ -12,9 +12,11 @@ export default function BlogPage({ params }) {
   if (!blog) return <p className="p-4">در حال بارگذاری...</p>
 
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold">{blog.title}</h1>
-      <p className="mt-2">{blog.content}</p>
+    <div className="min-h-screen bg-gray-100 py-10 px-4">
+      <div className="max-w-3xl mx-auto bg-white p-6 rounded-xl shadow-lg">
+        <h1 className="text-3xl font-bold text-blue-700 mb-4">{blog.title}</h1>
+        <p className="text-gray-800 leading-relaxed whitespace-pre-line">{blog.content}</p>
+      </div>
     </div>
   )
 }

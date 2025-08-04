@@ -8,6 +8,7 @@ export default function NewBlog() {
   const router = useRouter()
 
   const handleSubmit = () => {
+    if (!title || !content) return alert("تمام فیلدها الزامی هستند.")
     const blogs = JSON.parse(localStorage.getItem("blogs") || "[]")
     blogs.push({ title, content })
     localStorage.setItem("blogs", JSON.stringify(blogs))
@@ -15,24 +16,32 @@ export default function NewBlog() {
   }
 
   return (
-    <div className="p-4 max-w-xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">افزودن مقاله جدید</h1>
-      <input
-        type="text"
-        placeholder="عنوان"
-        value={title}
-        onChange={e => setTitle(e.target.value)}
-        className="w-full p-2 mb-2 border rounded"
-      />
-      <textarea
-        placeholder="متن مقاله"
-        value={content}
-        onChange={e => setContent(e.target.value)}
-        className="w-full p-2 mb-2 border rounded h-40"
-      />
-      <button onClick={handleSubmit} className="bg-blue-500 text-white px-4 py-2 rounded">
-        ذخیره
-      </button>
+    <div className="min-h-screen bg-gray-100 py-10 px-4">
+      <div className="max-w-xl mx-auto bg-white p-6 rounded-xl shadow-lg">
+        <h1 className="text-3xl font-bold mb-6 text-blue-700 text-center">افزودن مقاله جدید</h1>
+        <div className="space-y-4">
+          <input
+            type="text"
+            placeholder="عنوان مقاله"
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <textarea
+            placeholder="متن مقاله"
+            value={content}
+            onChange={e => setContent(e.target.value)}
+            rows={8}
+            className="w-full border border-gray-300 rounded px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            onClick={handleSubmit}
+            className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
+          >
+            ذخیره مقاله
+          </button>
+        </div>
+      </div>
     </div>
   )
 }
